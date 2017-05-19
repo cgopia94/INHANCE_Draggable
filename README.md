@@ -1,2 +1,2 @@
-# INHANCE-iSequencer
+# INHANCE-Draggable
 jQuery plugin for simple dragging
