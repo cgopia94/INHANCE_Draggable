@@ -27,13 +27,8 @@
 	    var me = this;
 
 	    var capturingHandler = function (event) {
-	    	if (!isClick)
-	    		event.stopPropagation();
-	    	else {
-	    		event.stopImmediatePropagation();
-	    		isClick = false;
-	    		$(event.target).trigger('click');
-	    	}
+	    	if (!isClick) 
+					event.stopImmediatePropagation();
 			};
 			
 			var validateClick = function (event) {
@@ -78,7 +73,8 @@
 						isDragStarted = true;
 						settings.onDragStart(me);
 					}
-					if (!isValidClick && typeof settings.onDragging == 'function') settings.onDragging(me);
+					if (!isValidClick && typeof settings.onDragging == 'function')
+						settings.onDragging(me);
 					
 	      }
 	    });
@@ -88,13 +84,13 @@
 	    	$(document).off('.draggable');
 	    	if (isRemovingElement) $(this).remove();
 	    };
-
+			
+			var that = this;
 	    $(this).off('destroyed').on('destroyed', function (evt) {
-				document.removeEventListener('click', capturingHandler);
+				that.removeEventListener('click', capturingHandler);	    	
 	    });
 
-	    document.removeEventListener('click', capturingHandler);
-	    document.addEventListener('click', capturingHandler, true);
+			this.addEventListener('click', capturingHandler, true);
 		});
 	};
 }(jQuery));
