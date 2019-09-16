@@ -27,18 +27,28 @@
 			border: solid #333 1px;
 	  	background-color:#999;
 		}
+		#myContainer {
+			position: relative;
+			left: 100px;
+			top: 200px;
+			width: 500px;
+			height: 300px;
+			padding: 10px;
+			border: 5px solid red;
+		}
 	</style>
 </head>
 <body>
 	<div id="myDragee">Yellow</div>
 	<div id="myDragee2">Orange</div>
-	<div id="myConsole"></div>
-	<div class="otherDragee">1</div>
-	<div class="otherDragee">2</div>
-	<div class="otherDragee">3</div>
-	<div class="otherDragee">4</div>
-	<div class="otherDragee">5</div>
-	<div class="otherDragee">6</div>
+	<div id="myContainer">
+			<div class="otherDragee">1</div>
+			<div class="otherDragee">2</div>
+			<div class="otherDragee">3</div>
+			<div class="otherDragee">4</div>
+			<div class="otherDragee">5</div>
+			<div class="otherDragee">6</div>
+	</div>
 	<button id="myBtn">Clean</button>
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -57,6 +67,7 @@
 		});
 
 		$('#myDragee2').INHANCE_draggable({
+			lock: 'y',
 			onDragStart: function (e) {
 			  console.log('drag starts!', $(e).text());
 			},
@@ -69,7 +80,7 @@
 		});
 
 		$('.otherDragee').INHANCE_draggable({
-
+			container: '#myContainer',
 		});
 
 		$('#myDragee').on('click', function() {
